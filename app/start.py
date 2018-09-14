@@ -3,7 +3,7 @@ from pybald import context
 from pybald.core.controllers import Controller, action
 from pybald.core.router import Router
 
-pybald.configure(debug=True)
+pybald.configure(config_file='project.py')
 
 
 def map(urls):
@@ -13,41 +13,25 @@ def map(urls):
         "login", r"/auth/login/", controller="user", action="login")
     urls.connect(
         "logout", r"/auth/logout/", controller="user", action="logout")
-
     urls.connect(
-        "bucketlist-list",
-        r"/bucketlists/",
-        controller="bucketlist",
-        action="list",
-        conditions={"method": ["GET"]}
+        "bucketlist-list", r"/bucketlists/", controller="bucketlist",
+        action="list", conditions={"method": ["GET"]}
     )
     urls.connect(
-        "bucketlist-create",
-        r"/bucketlists/",
-        controller="bucketlist",
-        action="create",
-        conditions={"method": ["POST"]}
+        "bucketlist-create", r"/bucketlists/", controller="bucketlist",
+        action="create", conditions={"method": ["POST"]}
     )
     urls.connect(
-        "bucketlist-detail",
-        r"/bucketlists/{id}/",
-        controller="bucketlist",
-        action="detail",
-        conditions={"method": ["GET"]}
+        "bucketlist-detail", r"/bucketlists/{id}/", controller="bucketlist",
+        action="detail", conditions={"method": ["GET"]}
     )
     urls.connect(
-        "bucketlist-update",
-        r"/bucketlists/{id}/",
-        controller="bucketlist",
-        action="update",
-        conditions={"method": ["PUT"]}
+        "bucketlist-update", r"/bucketlists/{id}/", controller="bucketlist",
+        action="update", conditions={"method": ["PUT"]}
     )
     urls.connect(
-        "bucketlist-delete",
-        r"/bucketlists/{id}/",
-        controller="bucketlist",
-        action="destroy",
-        conditions={"method": ["DELETE"]}
+        "bucketlist-delete", r"/bucketlists/{id}/", controller="bucketlist",
+        action="destroy", conditions={"method": ["DELETE"]}
     )
 
 

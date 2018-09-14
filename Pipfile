@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pybald = "*"
+"psycopg2" = "*"
 
 [dev-packages]
 
