@@ -1,9 +1,14 @@
+import os
+
 import pybald
 from pybald import context
 from pybald.core.controllers import Controller, action
 from pybald.core.router import Router
 
-pybald.configure(config_file='project.py')
+BASE_DIR = os.environ['PYTHONPATH']
+CONFIGPATH = os.path.join(BASE_DIR, 'project.py')
+
+pybald.configure(config_file=CONFIGPATH)
 
 
 def map(urls):

@@ -1,11 +1,13 @@
-import sqlalchemy as sqla, ForeignKey as fk
+import os
+
+import sqlalchemy as sqla
 
 from pybald import context
 from sqlalchemy import create_engine
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine(context.config.database_engine_uri, echo=True)
+engine = create_engine(os.environ['DATABASE_URL'], echo=True)
 Base = declarative_base()
 
 
@@ -34,7 +36,7 @@ class Bucketlist(Base):
     name = sqla.Column(sqla.String(255))
     created_at = sqla.Column(sqla.DateTime)
     last_modified = sqla.Column(sqla.DateTime)
-    user_id = sqla.Column(sqla.Integer, fk('users.user_id'))
+    user_id = sqla.Column(sqla.Integer, sqla.ForeignKey('users.user_id'))
     user = relationship("User", back_populates="bucketlists")
 
     def __repr__(self):
@@ -54,7 +56,7 @@ class Item(Base):
 
     created_at = sqla.Column(sqla.DateTime)
     last_modified = sqla.Column(sqla.DateTime)
-    bucketlist_id = sqla.Column(sqla.Integer, fk('bucketlists.b_id'))
+    bucketlist_id = sqla.Column(sqla.Integer, sqla.ForeignKey('bucketlists.b_id'))
     bucketlist = relationship("Bucketlist", back_populates="items")
 
     def __repr__(self):
